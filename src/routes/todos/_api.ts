@@ -1,4 +1,4 @@
-import type { Request } from "@sveltejs/kit";
+// import type { Request } from "@sveltejs/kit";
 
 // TODO: Persist in database
 let todos: Todo[] = [];
@@ -7,7 +7,7 @@ export const api = (request: Request, data?: Record<string, unknown>) => {
   let body = {};
   let status = 500;
 
-  switch (request.method.toUpperCase()) {
+  switch (request.request.method.toUpperCase()) {
     case "GET":
       body = todos;
       status = 200;
@@ -21,7 +21,6 @@ export const api = (request: Request, data?: Record<string, unknown>) => {
       todos = todos.filter((todo) => todo.uid !== request.params.uid);
       status = 200;
       break;
-
     case "PATCH":
       todos = todos.map((todo) => {
         if (todo.uid === request.params.uid) {
@@ -39,8 +38,8 @@ export const api = (request: Request, data?: Record<string, unknown>) => {
   }
 
   if (
-    request.method.toUpperCase() !== "GET" &&
-    request.headers.get("accept") !== "application/json"
+    request.request.method.toUpperCase() !== "GET" &&
+    request.request.headers.get("accept") !== "application/json"
   ) {
     return {
       status: 303,
