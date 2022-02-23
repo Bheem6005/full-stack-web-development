@@ -2,6 +2,7 @@
   "name": "full-stack-web-development",
   "version": "0.0.1",
   "scripts": {
+    "predev": "prisma migrate dev",
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
@@ -13,6 +14,7 @@
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "@types/cookie": "^0.4.1",
+    "prisma": "^3.10.0",
     "svelte": "^3.46.0",
     "svelte-check": "^2.2.6",
     "svelte-preprocess": "^4.10.1",
@@ -23,6 +25,7 @@
   "dependencies": {
     "@fontsource/fira-mono": "^4.5.0",
     "@lukeed/uuid": "^2.0.0",
+    "@prisma/client": "^3.10.0",
     "cookie": "^0.4.1"
   }
 }
