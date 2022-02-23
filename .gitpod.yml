@@ -1,3 +1,5 @@
+image: gitpod/workspace-postgres
+
 tasks:
   - init: npm install && npm run build
     command: |
@@ -7,10 +9,17 @@ tasks:
 ports:
   - port: 3000
     onOpen: open-browser
+  - port: 5432
+    onOpen: ignore
 
 vscode:
   extensions:
     - svelte.svelte-vscode
+    - eamodio.gitlens
+    - esbenp.prettier-vscode
+    - GitHub.vscode-pull-request-github
+    - christian-kohler.npm-intellisense
+    - eg2.vscode-npm-script
 
 github:
   prebuilds:
