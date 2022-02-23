@@ -10,6 +10,7 @@ tasks:
   - command: npx prisma studio
     env:
       DATABASE_URL: postgres://gitpod@localhost/todos
+  
 
 ports:
   - port: 3000
@@ -22,11 +23,6 @@ ports:
 vscode:
   extensions:
     - svelte.svelte-vscode
-    - eamodio.gitlens
-    - esbenp.prettier-vscode
-    - GitHub.vscode-pull-request-github
-    - christian-kohler.npm-intellisense
-    - eg2.vscode-npm-script
     - prisma.prisma
 
 github:
