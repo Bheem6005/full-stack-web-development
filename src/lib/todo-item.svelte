@@ -14,7 +14,7 @@
   >
     <input type="hidden" name="done" value={todo.done ? "" : "true"} />
     <button
-      aria-label="Mark rodo as {todo.done ? 'not done' : 'done'}"
+      aria-label="Mark todo as {todo.done ? 'not done' : 'done'}"
       class="toggle"
     />
   </form>
