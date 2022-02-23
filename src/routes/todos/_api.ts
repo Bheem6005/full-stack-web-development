@@ -1,22 +1,40 @@
-/*
-	This module is used by the /todos endpoint to
-	make calls to api.svelte.dev, which stores todos
-	for each user. The leading underscore indicates that this is
-	a private module, _not_ an endpoint — visiting /todos/_api
-	will net you a 404 response.
+// TODO: Persist in database
+let todos: Todo[] = [];
 
-	(The data on the todo app will expire periodically; no
-	guarantees are made. Don't use it to organise your life.)
-*/
+export const api = (request: Request, todo?: Todo) => {
+  let body = {};
+  let status = 500;
 
-const base = 'https://api.svelte.dev';
+  switch (request.method.toUpperCase()) {
+    case "GET":
+      body = todos;
+      status = 200;
+      break;
+    case "POST":
+      todos.push(todo);
+      body = todo;
+      status = 201;
+      break;
+    case "DELETE":
+      todos = todos.filter(todo => todo.uid !== request.params.uid)
+      status = 200;
+      break;
 
-export function api(method: string, resource: string, data?: Record<string, unknown>) {
-	return fetch(`${base}/${resource}`, {
-		method,
-		headers: {
-			'content-type': 'application/json'
-		},
-		body: data && JSON.stringify(data)
-	});
+    default:
+      break;
+  }
+
+  if (request.method.toUpperCase() !== "GET") {
+    return {
+      status: 303,
+      headers: {
+        location: "/"
+      }
+    };
+  }
+
+  return {
+    status,
+    body
+  }
 }
